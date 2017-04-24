@@ -1,18 +1,28 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
-class NumGen
-  attr_reader :secret_number
+class Guesser
+  attr_reader :secret_number, :guess
 
-  def initialize
+  def initialize(guess)
     @secret_number = rand(100)
+    @guess = guess
   end
+
+  def win
+    if guess.to_i == @secret_number
+    end
+  end
+
 end
 
-number = NumGen.new.secret_number
 get '/' do
+  guess = Guesser.new
+  number = guess.secret_number
   guess = params["guess"]
-  erb :index, :locals => {:number => number, :guess => guess}
+  erb :index, :locals => {:number => number,
+                          :guess => guess,
+                          :win => guess.win(guess)}
   # throw params.inspect
   # params["guess"]
 
