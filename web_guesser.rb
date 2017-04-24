@@ -13,10 +13,14 @@ class Guesser
   def message
     if @guess.to_i == @secret_number
       "You got it right!"
+    elsif @guess.to_i > (@secret_number + 5)
+      "Your GUESS is WAY TOO HIGH!"
+    elsif @guess.to_i < (@secret_number - 5)
+      "Your GUESS is WAY TOO LOW!"
     elsif @guess.to_i > @secret_number
-      "Your GUESS is too HIGH!"
+      "Your GUESS is too high!"
     elsif @guess.to_i < @secret_number
-      "Your GUESS is too LOW!"
+      "Your GUESS is too low!"
     end
   end
 
