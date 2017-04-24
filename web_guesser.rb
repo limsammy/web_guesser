@@ -13,6 +13,10 @@ class Guesser
   def win
     if @guess.to_i == @secret_number
       "You win!"
+    elsif @guess.to_i > @secret_number
+      "Your GUESS is too HIGH!"
+    elsif @guess.to_i < @secret_number
+      "Your GUESS is too LOW!"
     end
   end
 
