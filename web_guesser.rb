@@ -10,9 +10,9 @@ class Guesser
     @guess = guess
   end
 
-  def win
+  def message
     if @guess.to_i == @secret_number
-      "You win!"
+      "You got it right!"
     elsif @guess.to_i > @secret_number
       "Your GUESS is too HIGH!"
     elsif @guess.to_i < @secret_number
@@ -30,7 +30,7 @@ get '/' do
   number = guesser.secret_number
   erb :index, :locals => {:number => number,
                           :guess => guess,
-                          :win => guesser.win}
+                          :message => guesser.message}
   # throw params.inspect
   # params["guess"]
 
