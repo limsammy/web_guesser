@@ -10,7 +10,9 @@ class Guesser
   end
 
   def message
-    if @guess.to_i == @secret_number
+    if @guess.nil?
+      "Play the game!"
+    elsif @guess.to_i == @secret_number
       "You got it right!\nYour SECRET number is #{@secret_number}!"
     elsif @guess.to_i > (@secret_number + 5)
       "Your GUESS is WAY TOO HIGH!"
