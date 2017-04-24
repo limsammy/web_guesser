@@ -2,27 +2,31 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 class Guesser
-  attr_reader :secret_number, :guess
+  attr_accessor :guess
+  attr_reader :secret_number
 
-  def initialize(guess)
+  def initialize(guess = nil)
     @secret_number = rand(100)
     @guess = guess
   end
 
   def win
-    if guess.to_i == @secret_number
+    if @guess.to_i == @secret_number
+      "You win!"
     end
   end
 
 end
 
+guesser = Guesser.new
+
 get '/' do
-  guess = Guesser.new
-  number = guess.secret_number
-  guess = params["guess"]
+  guesser.guess = params["guess"]
+  guess = guesser.guess
+  number = guesser.secret_number
   erb :index, :locals => {:number => number,
                           :guess => guess,
-                          :win => guess.win(guess)}
+                          :win => guesser.win}
   # throw params.inspect
   # params["guess"]
 
