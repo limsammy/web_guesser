@@ -3,7 +3,6 @@ require 'sinatra/reloader'
 
 class Guesser
   attr_accessor :guess
-  attr_reader :secret_number
 
   def initialize(guess = nil)
     @secret_number = rand(100)
@@ -24,6 +23,11 @@ class Guesser
     end
   end
 
+  def secret_number
+    if @guess.to_i == @secret_number
+      "Your SECRET number is #{@secret_number}!"
+    end
+  end
 end
 
 guesser = Guesser.new
